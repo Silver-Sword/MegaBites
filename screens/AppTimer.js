@@ -7,7 +7,6 @@ import {
   StatusBar,
   TouchableOpacity,
   Dimensions,
-  // Picker,
   Platform
 } from "react-native";
 
@@ -17,64 +16,15 @@ import {
 
 const screen = Dimensions.get("window");
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  button: {
-    borderWidth: 10,
-    borderColor: "#f3834e",
-    width: screen.width / 2,
-    height: screen.width / 2,
-    borderRadius: screen.width / 2,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30
-  },
-  buttonStop: {
-    borderColor: "#da3135"
-  },
-  buttonText: {
-    fontSize: 45,
-    color: "#f3834e"
-  },
-  buttonTextStop: {
-    color: "#da3135"
-  },
-  timerText: {
-    color: "black",
-    fontSize: 90
-  },
-  picker: {
-    width: 50,
-    ...Platform.select({
-      android: {
-        color: "black",
-        backgroundColor: "white",
-        marginLeft: 10
-      }
-    })
-  },
-  pickerItem: {
-    color: "black",
-    fontSize: 20
-  },
-  pickerContainer: {
-    flexDirection: "row",
-    alignItems: "center"
-  }
-});
+
 
 // 3 => 03, 10 => 10
 const formatNumber = number => `0${number}`.slice(-2);
 
 const getRemaining = time => {
   const hours = Math.floor(Math.floor(time / 60) / 60);
-  const minutes = Math.floor((time - hours * 60) / 60);
-  const seconds = time - minutes * 60;
+  const minutes = Math.floor((time - (hours * 60 * 60)) / 60);
+  const seconds = time - minutes * 60 - hours * 60 * 60;
   return { hours: formatNumber(hours), minutes: formatNumber(minutes), seconds: formatNumber(seconds) };
 };
 
@@ -91,15 +41,15 @@ const createArray = length => {
 
 const AVAILABLE_MINUTES = createArray(10);
 const AVAILABLE_SECONDS = createArray(60);
-const AVAILABLE_HOURS = createArray(99);
+const AVAILABLE_HOURS = createArray(100);
 
 export default class AppTimer extends React.Component {
   state = {
     remainingSeconds: 5,
     isRunning: false,
     selectedHours: "0",
-    selectedMinutes: "0",
-    selectedSeconds: "5"
+    selectedMinutes: "5",
+    selectedSeconds: "0"
   };
 
   interval = null;
@@ -148,7 +98,7 @@ export default class AppTimer extends React.Component {
         itemStyle={styles.pickerItem}
         selectedValue={this.state.selectedHours}
         onValueChange={itemValue => {
-          this.setState({ selectedHour: itemValue });
+          this.setState({ selectedHours: itemValue });
         }}
         mode="dropdown"
       >
@@ -172,6 +122,7 @@ export default class AppTimer extends React.Component {
         ))}
       </Picker>
       <Text style={styles.pickerItem}>min</Text>
+
       <Picker
         style={styles.picker}
         itemStyle={styles.pickerItem}
@@ -186,17 +137,19 @@ export default class AppTimer extends React.Component {
         ))}
       </Picker>
       <Text style={styles.pickerItem}>sec</Text>
+
     </View>
   );
 
   render() {
-    const { minutes, seconds } = getRemaining(this.state.remainingSeconds);
+    const { hours, minutes, seconds } = getRemaining(this.state.remainingSeconds);
 
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        {this.state.isRunning ? (
-          <Text style={styles.timerText}>{`${minutes}:${seconds}`}</Text>
+        {this.state.isRunning ? ( this.state.remainingSeconds < 3600 ? 
+          (<Text style={styles.timerText}>{`${minutes}:${seconds}`} </Text>) :
+          (<Text style={styles.timerText}>{`${hours}:${minutes}:${seconds}`}</Text>)
         ) : (
           this.renderPickers()
         )}
@@ -216,3 +169,56 @@ export default class AppTimer extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  button: {
+    borderWidth: 10,
+    borderColor: "#f3834e",
+    width: screen.width / 2,
+    height: screen.width / 2,
+    borderRadius: screen.width / 2,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 30
+  },
+  buttonStop: {
+    borderColor: "#da3135"
+  },
+  buttonText: {
+    fontSize: 45,
+    color: "#f3834e"
+  },
+  buttonTextStop: {
+    color: "#da3135"
+  },
+  timerText: {
+    color: "black",
+    fontSize: 90
+  },
+  picker: {
+    width: 90,
+    color: "black",
+    // alignItems: "right",  VERY BAD CODE: BREAKS ANDROID APP
+    ...Platform.select({
+      android: {
+        color: "black",
+        backgroundColor: "white",
+        marginLeft: 10
+      }
+    })
+  },
+  pickerItem: {
+    color: "black",
+    fontSize: 20
+  },
+  pickerContainer: {
+    flexDirection: "row",
+    alignItems: "center"
+  }
+});
