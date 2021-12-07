@@ -72,9 +72,10 @@ const styles = StyleSheet.create({
 const formatNumber = number => `0${number}`.slice(-2);
 
 const getRemaining = time => {
-  const minutes = Math.floor(time / 60);
+  const hours = Math.floor(Math.floor(time / 60) / 60);
+  const minutes = Math.floor((time - hours * 60) / 60);
   const seconds = time - minutes * 60;
-  return { minutes: formatNumber(minutes), seconds: formatNumber(seconds) };
+  return { hours: formatNumber(hours), minutes: formatNumber(minutes), seconds: formatNumber(seconds) };
 };
 
 const createArray = length => {
@@ -96,6 +97,7 @@ export default class AppTimer extends React.Component {
   state = {
     remainingSeconds: 5,
     isRunning: false,
+    selectedHours: "0",
     selectedMinutes: "0",
     selectedSeconds: "5"
   };
@@ -117,7 +119,7 @@ export default class AppTimer extends React.Component {
   start = () => {
     this.setState(state => ({
       remainingSeconds:
-        
+        parseInt(state.selectedHours, 10) * 60 * 60 + 
         parseInt(state.selectedMinutes, 10) * 60 +
         parseInt(state.selectedSeconds, 10),
       isRunning: true
@@ -141,6 +143,21 @@ export default class AppTimer extends React.Component {
 
   renderPickers = () => (
     <View style={styles.pickerContainer}>
+      <Picker
+        style={styles.picker}
+        itemStyle={styles.pickerItem}
+        selectedValue={this.state.selectedHours}
+        onValueChange={itemValue => {
+          this.setState({ selectedHour: itemValue });
+        }}
+        mode="dropdown"
+      >
+        {AVAILABLE_HOURS.map(value => (
+          <Picker.Item key={value} label={value} value={value} />
+        ))}
+      </Picker>
+      <Text style={styles.pickerItem}>hr</Text>
+
       <Picker
         style={styles.picker}
         itemStyle={styles.pickerItem}
