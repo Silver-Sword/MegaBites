@@ -1,6 +1,9 @@
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
 
+import { API_URL } from './secret/secrets.js';
+import APIKit from './APIKit.js';
+const {login_destination} = "api/auth/login";
 
 
 // import * as firebase from 'firebase';
@@ -11,31 +14,89 @@ import axios from 'axios';
 
 // export const auth = ({children}) => 
 // {
-//   const [user, setUser] = useState(null);
-//   const [error, setError] = useState(null);
 
-  const mockSuccess = (value) => {
+// const [user, setUser] = useState(null);
+// const [error, setError] = useState(null);
+
+  const success = (value) => {
     return new Promise((resolve) => {
       setTimeout(() => resolve(value), 2000);
     });
   };
   
-  const mockFailure = (value) => {
+  const failure = (value) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => reject(value), 2000);
     });
   };
 
+  const onSuccess = ({data}) => {
+    // Set JSON Web Token on success
+    setClientToken(data.token);
+    this.setState({isLoading: false, isAuthorized: true});
+  };
+
+  const onFailure = error => {
+    console.log(error && error.response);
+    this.setState({errors: error.response.data, isLoading: false});
+  };
+
   // login function
   export const login = (email, password, shouldSucceed = true) => 
-  {
-    console.log(email, password);
-  
-    if (!shouldSucceed) {
-      return mockFailure({ error: 500, message: 'Something went wrong!' });
-    }
-  
-    return mockSuccess({ auth_token: 'successful_fake_token' });
+  {  
+    const doLogin = async event =>     
+    {   
+        event.preventDefault();
+
+        const config = {
+			header: {
+				"Content-Type": "application/json",
+			},
+		}
+
+		try {
+			const {data} = axios.post(`${API_URL}${login_destination}`, {email, password}, config);
+
+
+		    localStorage.setItem("authToken", data.token);
+            history.push('/home');
+
+        return success({ auth_token: data.token }); 
+		}catch(error) {
+			setError("Error occured");
+      return failure({ error: 500, message: 'Username or Password Incorrect' });
+		}
+
+        
+    };   
+
+
+    // const config = {
+    //   header: {
+    //       "Content-Type": "application/json",
+    //     },
+		//   }
+
+
+    //   APIKit.post(`${API_URL}${login_destination}`, {email, password})
+    //   .then(onSuccess)
+    //   .catch(onFailure);
+
+
+
+      // try {
+      //   console.log("got here")
+      //   const {data} = axios.post(`${API_URL}${login_destination}`, {email, password},
+      //   config);
+
+      //     //localStorage.setItem("authToken", data.token);
+      //         //history.push('/home');
+      //   console.log("successfully found")
+      //   return success({ auth_token: data.token }); 
+        
+      // }catch(error) {
+      //   return failure({ error: 500, message: 'Username or Password Incorrect' });
+      // }
   };
 
   const getAuthenticationToken = () => 'successful_fake_token';
@@ -44,10 +105,10 @@ import axios from 'axios';
   const token = getAuthenticationToken();
 
   if (!shouldSucceed) {
-    return mockFailure({ error: 401, message: 'Invalid Request' });
+    return failure({ error: 401, message: 'Invalid Request' });
   }
 
-  return mockSuccess({
+  return success({
     users: [
       {
         email: 'test@test.ca',
