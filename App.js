@@ -5,15 +5,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './screens/Login';
 import Home from './screens/Home';
 import SignUp from './screens/SignUp';
-import AppTimer from './screens/AppTimer'
+import AppTimer from './screens/AppTimer';
 
 const Main = createStackNavigator();
 
 const MainNavigator = () => {
   return (
     <Main.Navigator headerMode='none'>
-      <Main.Screen name='Timer' component={AppTimer} />
+      
       <Main.Screen name='Login' component={Login} />
+      <Main.Screen name='Timer' component={AppTimer} />
       <Main.Screen name='SignUp' component={SignUp} />
       <Main.Screen name='Home' component={Home} />
     </Main.Navigator>
