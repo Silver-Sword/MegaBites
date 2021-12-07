@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -15,6 +15,10 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function Login() {
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const { onLogin, isLoading, error } = useContext(AuthenticationContext);
+
   const {
     handleChange,
     handleBlur,
