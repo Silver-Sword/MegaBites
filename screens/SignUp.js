@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function SignUp({ navigation }) {
+const SignUp = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text> This app is intended to be used with our site and for ease of cooking {"\n"} </Text>
@@ -26,3 +26,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+export default SignUp;
