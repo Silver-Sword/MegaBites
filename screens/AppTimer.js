@@ -20,13 +20,13 @@ const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#07121B",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
   },
   button: {
     borderWidth: 10,
-    borderColor: "#89AAFF",
+    borderColor: "#f3834e",
     width: screen.width / 2,
     height: screen.width / 2,
     borderRadius: screen.width / 2,
@@ -35,31 +35,31 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   buttonStop: {
-    borderColor: "#FF851B"
+    borderColor: "#da3135"
   },
   buttonText: {
     fontSize: 45,
-    color: "#89AAFF"
+    color: "#f3834e"
   },
   buttonTextStop: {
-    color: "#FF851B"
+    color: "#da3135"
   },
   timerText: {
-    color: "#fff",
+    color: "black",
     fontSize: 90
   },
   picker: {
     width: 50,
     ...Platform.select({
       android: {
-        color: "#fff",
-        backgroundColor: "#07121B",
+        color: "black",
+        backgroundColor: "white",
         marginLeft: 10
       }
     })
   },
   pickerItem: {
-    color: "#fff",
+    color: "black",
     fontSize: 20
   },
   pickerContainer: {
@@ -117,6 +117,7 @@ export default class AppTimer extends React.Component {
   start = () => {
     this.setState(state => ({
       remainingSeconds:
+        
         parseInt(state.selectedMinutes, 10) * 60 +
         parseInt(state.selectedSeconds, 10),
       isRunning: true
@@ -153,7 +154,7 @@ export default class AppTimer extends React.Component {
           <Picker.Item key={value} label={value} value={value} />
         ))}
       </Picker>
-      <Text style={styles.pickerItem}>minutes</Text>
+      <Text style={styles.pickerItem}>min</Text>
       <Picker
         style={styles.picker}
         itemStyle={styles.pickerItem}
@@ -167,7 +168,7 @@ export default class AppTimer extends React.Component {
           <Picker.Item key={value} label={value} value={value} />
         ))}
       </Picker>
-      <Text style={styles.pickerItem}>seconds</Text>
+      <Text style={styles.pickerItem}>sec</Text>
     </View>
   );
 
