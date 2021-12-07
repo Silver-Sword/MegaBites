@@ -3,8 +3,11 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+// import {Login} from '../api_link/auth.js'
+
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
+import { NavigationContainer } from '@react-navigation/native';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -14,7 +17,7 @@ const LoginSchema = Yup.object().shape({
     .required('Required')
 });
 
-export default function Login() {
+const Login = ({navigation}) => {
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
   // const { onLogin, isLoading, error } = useContext(AuthenticationContext);
@@ -30,7 +33,8 @@ export default function Login() {
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '' },
     onSubmit: values =>
-      alert(`Email: ${values.email}, Password: ${values.password}`)
+      navigation.navigate('Home', {name: values.email}) 
+      //  alert(`Email: ${values.email}, Password: ${values.password}`)
   });
 
   const password = useRef(null);
@@ -51,7 +55,6 @@ export default function Login() {
 
       <View style={login_styles.login_box}>
         <TextInput
-          style={login_styles.login_text}
           placeholderTextColor='#555555'
           // icon='mail'
           placeholder='Enter your email'
@@ -70,7 +73,6 @@ export default function Login() {
       </View>
       <View style={login_styles.login_box}>
         <TextInput
-          style={login_styles.login_text}
           placeholderTextColor='#555555'
           ref={password}
           icon='key'
@@ -89,8 +91,9 @@ export default function Login() {
         />
       </View>
       <Button label='Login'
-          onPress={handleSubmit}
-          styles={login_styles.loginBtn} />
+          // onPress={handleSubmit}
+          onPress = {() => navigation.navigate('Home')}
+           />
     </View>
   );
 }
@@ -120,3 +123,5 @@ const login_styles = StyleSheet.create({
   },
 
 });
+
+export default Login;

@@ -1,73 +1,107 @@
 import React, { useState, createContext } from 'react';
-import * as firebase from 'firebase';
+import axios from 'axios';
 
-import { loginRequest } from './authentication.service';
+// import * as firebase from 'firebase';
 
-export const AuthenticationContext = createContext();
+// import { loginRequest } from './authentication.service';
 
-export const AuthenticationContextProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+// export const AuthenticationContext = createContext();
+
+export const auth = ({children}) => 
+{
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  firebase.auth().onAuthStateChanged((usr) => {
-    if (usr) {
-      setUser(usr);
-      setIsLoading(false);
-    }
-  });
 
-  const onLogin = (email, password) => {
-    setIsLoading(true);
-    loginRequest(email, password)
-      .then((u) => {
-        setUser(u);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.toString());
-      });
-  };
+  const doLogin = async event =>     
+    {   
+        event.preventDefault();
 
-  const onRegister = (email, password, repeatedPassword) => {
-    setIsLoading(true);
-    if (password !== repeatedPassword) {
-      setError('Error: Passwords do not match');
-      return;
-    }
+        const config = {
+			header: {
+				"Content-Type": "application/json",
+			},
+		}
 
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((u) => {
-        setUser(u);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.toString());
-      });
-  };
+		try {
+			const {data} = await axios.post("https://sheltered-wildwood-67909.herokuapp.com/api/auth/login", {email, password},
+			config);
 
-  const onLogout = () => {
-    setUser(null);
-    firebase.auth().signOut();
-  };
+		    localStorage.setItem("authToken", data.token);
+            history.push('/home');
 
-  return (
-    <AuthenticationContext.Provider
-      value={{
-        isAuthenticated: !!user,
-        isLoading,
-        user,
-        error,
-        onLogin,
-        onRegister,
-        onLogout,
-      }}
-    >
-      {children}
-    </AuthenticationContext.Provider>
-  );
-};
+			
+		}catch(error) {
+			setError("Error occured");
+		}
+
+        
+    };   
+}
+
+// export const AuthenticationContextProvider = ({ children }) => {
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [user, setUser] = useState(null);
+//   const [error, setError] = useState(null);
+
+//   firebase.auth().onAuthStateChanged((usr) => {
+//     if (usr) {
+//       setUser(usr);
+//       setIsLoading(false);
+//     }
+//   });
+
+//   const onLogin = (email, password) => {
+//     setIsLoading(true);
+//     loginRequest(email, password)
+//       .then((u) => {
+//         setUser(u);
+//         setIsLoading(false);
+//       })
+//       .catch((err) => {
+//         setIsLoading(false);
+//         setError(err.toString());
+//       });
+//   };
+
+//   const onRegister = (email, password, repeatedPassword) => {
+//     setIsLoading(true);
+//     if (password !== repeatedPassword) {
+//       setError('Error: Passwords do not match');
+//       return;
+//     }
+
+//     firebase
+//       .auth()
+//       .createUserWithEmailAndPassword(email, password)
+//       .then((u) => {
+//         setUser(u);
+//         setIsLoading(false);
+//       })
+//       .catch((err) => {
+//         setIsLoading(false);
+//         setError(err.toString());
+//       });
+//   };
+
+//   const onLogout = () => {
+//     setUser(null);
+//     firebase.auth().signOut();
+//   };
+
+//   return (
+//     <AuthenticationContext.Provider
+//       value={{
+//         isAuthenticated: !!user,
+//         isLoading,
+//         user,
+//         error,
+//         onLogin,
+//         onRegister,
+//         onLogout,
+//       }}
+//     >
+//       {children}
+//     </AuthenticationContext.Provider>
+//   );
+// };

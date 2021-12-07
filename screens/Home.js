@@ -1,10 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Button from '../components/Button';
 
-export default function Home() {
+
+ const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
+
+      <Button label='Logout'
+          // onPress={handleSubmit}
+          onPress = {() => navigation.navigate('Login')}
+           />
     </View>
   );
 }
@@ -17,3 +24,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+export default Home;
