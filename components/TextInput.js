@@ -10,10 +10,6 @@ const TextInput = forwardRef(({ icon, error, touched, ...otherProps }, ref) => {
         flexDirection: 'row',
         alignItems: 'center',
         height: 48,
-        borderRadius: 8,
-        borderColor: validationColor,
-        borderWidth: StyleSheet.hairlineWidth,
-        padding: 8
       }}
     >
       <View style={{ padding: 8 }}>

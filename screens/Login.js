@@ -37,14 +37,19 @@ export default function Login() {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
-      <Image style={login_styles.image} source={require('../components/imgs/MegaBitesLogo_transparent-large.png')} />
+      <Image 
+          style={login_styles.image} 
+          source={require('../components/imgs/MegaBitesLogo_transparent-large.png')} 
+          />
 
-      <View style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}>
+      <View style={login_styles.login_box}>
         <TextInput
-          icon='mail'
+          style={login_styles.login_text}
+          placeholderTextColor='#555555'
+          // icon='mail'
           placeholder='Enter your email'
           autoCapitalize='none'
           autoCompleteType='email'
@@ -59,8 +64,10 @@ export default function Login() {
           onSubmitEditing={() => password.current?.focus()}
         />
       </View>
-      <View style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}>
+      <View style={login_styles.login_box}>
         <TextInput
+          style={login_styles.login_text}
+          placeholderTextColor='#555555'
           ref={password}
           icon='key'
           placeholder='Enter your password'
@@ -77,17 +84,35 @@ export default function Login() {
           onSubmitEditing={() => handleSubmit()}
         />
       </View>
-      <Button label='Login' onPress={handleSubmit} />
+      <Button label='Login'
+          onPress={handleSubmit}
+          styles={login_styles.loginBtn} />
     </View>
   );
 }
 
 const login_styles = StyleSheet.create({
-  image: {
+  image: 
+  {
     marginBottom: 30,
     width: "50%",
     height: "25%",
     resizeMode:'contain',
     alignItems: "center",
-  }
+  },
+
+  login_box: 
+  {
+    // paddingHorizontal: 32, 
+    // marginBottom: 16, 
+    backgroundColor: "#ffe1a8",
+    borderRadius: 20,
+    width: "70%",
+    height: 45,
+    marginBottom: 20,
+    border: 'none',
+    alignItems: "center",
+    
+  },
+
 });
