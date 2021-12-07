@@ -3,11 +3,14 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-// import {Login} from '../api_link/auth.js'
+// api stuff
+import {login} from '../api_link/auth.js'
 
+// Interactive Components
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import { NavigationContainer } from '@react-navigation/native';
+
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -22,6 +25,17 @@ const Login = ({navigation}) => {
   // const [password, setPassword] = useState('');
   // const { onLogin, isLoading, error } = useContext(AuthenticationContext);
 
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const loginUser = () => {
+    setErrorMessage('');
+    login('test@test.ca', 'password', false)
+      .then(() => {
+        navigation.navigate('Home');
+      })
+      .catch((err) => setErrorMessage(err.message));
+  };
+
   const {
     handleChange,
     handleBlur,
@@ -32,8 +46,8 @@ const Login = ({navigation}) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '' },
-    onSubmit: values =>
-      navigation.navigate('Home', {name: values.email}) 
+    onSubmit: values => loginUser
+      //navigation.navigate('Home', {name: values.email}) 
       //  alert(`Email: ${values.email}, Password: ${values.password}`)
   });
 
@@ -92,8 +106,11 @@ const Login = ({navigation}) => {
       </View>
       <Button label='Login'
           // onPress={handleSubmit}
-          onPress = {() => navigation.navigate('Home')}
+          //onPress = {() => navigation.navigate('Home')}
+          onPress = {loginUser}
            />
+
+      {errorMessage ? <Text style={{marginTop: 30}}>{errorMessage}</Text> : null}
     </View>
   );
 }
