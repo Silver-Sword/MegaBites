@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -40,9 +40,8 @@ export default function Login() {
         justifyContent: 'center'
       }}
     >
-      <Text style={{ color: '#223e4b', fontSize: 20, marginBottom: 16 }}>
-        Login
-      </Text>
+      <Image style={login_styles.image} source={require('../components/imgs/MegaBitesLogo_transparent-large.png')} />
+
       <View style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}>
         <TextInput
           icon='mail'
@@ -82,3 +81,13 @@ export default function Login() {
     </View>
   );
 }
+
+const login_styles = StyleSheet.create({
+  image: {
+    marginBottom: 30,
+    width: "50%",
+    height: "25%",
+    resizeMode:'contain',
+    alignItems: "center",
+  }
+});
