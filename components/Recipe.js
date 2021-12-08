@@ -2,9 +2,12 @@ import React from 'react';
 import { Text, StyleSheet, View, StatusBar } from 'react-native';
 
 const Recipe = ({ item, navigation }) => {
+  item = global.item_view;
+  console.log(item);
+
     return(
-    <View style={styles.item}>
-      <Text style={styles.title}>{item}</Text>
+    <View style={styles.container}>
+      <Text style={styles.item}>{item.recipeName}</Text>
     </View>
   )};
 

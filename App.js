@@ -53,7 +53,7 @@ export default function App() {
         {/* <Stack.Screen name="MenuStack" component={MenuStack} /> */}
         
         <Stack.Screen name = 'Home' component={Home} />
-        <Stack.Screen name = 'Recipe' component={Recipe} />
+        <Stack.Screen name = 'RecipePage' component={Recipe} />
 
       </Stack.Navigator>
     </NavigationContainer>

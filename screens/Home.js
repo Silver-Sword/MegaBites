@@ -7,7 +7,7 @@ import MenuBar from '../components/MenuBar';
 
 import '../global.js'
 
- const Home = ({navigation}) => {
+ const Home = ({navigation, item}) => {
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
