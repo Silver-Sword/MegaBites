@@ -58,6 +58,7 @@ const HomeScreen = () => {
         data={global.home_recipes}
         renderItem={renderItem}
         keyExtractor={item => item._id}
+        extraData={item => item}
       />
     </SafeAreaView>
   );
