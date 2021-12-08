@@ -68,7 +68,7 @@ export default function App() {
         }}
       />
       
-      <Stack.Screen name='Timer' component={AppTimer} 
+      <Stack.Screen name='AppTimer' component={AppTimer} 
             options={{
               headerShown: true
           }}/>

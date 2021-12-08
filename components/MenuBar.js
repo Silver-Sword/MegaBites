@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
@@ -11,10 +11,31 @@ import {AppTimer} from '../screens/AppTimer.js'
 import HomeScreen from '../screens/HomeScreen.js'
 
 
-function SettingsScreen() {
+function SettingsScreen({navigation}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Timer!</Text>
+
+      <TouchableOpacity
+        style={{
+          borderRadius: 8,
+          height: 50,
+          width: 245,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#f3834e'
+        }}
+        activeOpacity={0.7}
+        onPress= {() => 
+          navigation.navigate('AppTimer')
+        }
+      >
+        <Text
+          style={{ fontSize: 18, color: 'white', textTransform: 'uppercase' }}
+        >
+        Set Timer
+        </Text>
+      </TouchableOpacity>
+      
     </View>
   );
 }
