@@ -40,8 +40,6 @@ const Login = ({navigation}) => {
         if(response.success)
         {
           global.user_token = response.token;
-          console.log(global.user_token);
-          console.log(global.user_token != '.');
           navigation.navigate('Home');
         }
 

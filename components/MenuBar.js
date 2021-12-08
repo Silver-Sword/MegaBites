@@ -156,7 +156,7 @@ export default function MenuBar()
     <Tab.Navigator>
     {/* <Tab.Screen name="AppTimer" component={AppTimer} /> */}
     <Tab.Screen name="Settings" component={SettingsScreen} />
-    <Tab.Screen name="HomeScreen" component={HomeScreen} />
+    {/* <Tab.Screen name="HomeScreen" component={HomeScreen} /> */}
   </Tab.Navigator>
   );
 }

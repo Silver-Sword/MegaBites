@@ -55,7 +55,6 @@ const login_destination = "api/auth/login";
           },
         }
 
-        console.log("at doLogin");
         try {
           const requestOptions = {
               method: 'POST',
