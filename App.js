@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -47,13 +48,25 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none">
+      <Stack.Navigator options={{
+                        headerShown: false
+                    }}>
         {/* <Stack.Screen name='Timer' component={AppTimer} /> */}
-        <Stack.Screen name="Login" component={Login} />
-        {/* <Stack.Screen name="MenuStack" component={MenuStack} /> */}
-        
-        <Stack.Screen name = 'Home' component={Home} />
-        <Stack.Screen name = 'RecipePage' component={Recipe} />
+        <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>        
+        <Stack.Screen name = 'Home' component={Home} options={{headerShown: false}}/>
+        <Stack.Screen name = 'RecipePage' component={Recipe} 
+          options={{
+            headerShown: true,
+            // headerRight: () => (
+            // <Button
+            //   onPress={() => alert('This is a button!')}
+            //   title="Info"
+            //   color="#fff"
+            // 
+            // />
+          //),
+        }}
+      />
 
       </Stack.Navigator>
     </NavigationContainer>
