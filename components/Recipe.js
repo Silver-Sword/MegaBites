@@ -1,17 +1,10 @@
 import React from 'react';
 import { Text, StyleSheet, View, StatusBar } from 'react-native';
 
-// const Recipe = ({ title, description }) => {
-//   return (
-//     <View style={styles.item}>
-//         <Text style={styles.title}>{title}{"\n"}{description}</Text>
-//     </View>
-//   );
-// }
-const Recipe = ({ title }) => {
+const Recipe = ({ item, navigation }) => {
     return(
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{item}</Text>
     </View>
   )};
 

@@ -9,6 +9,7 @@ import AppTimer from './screens/AppTimer'
 
 import './global.js'
 import AppContainer from './components/AppContainer';
+import Recipe from './components/Recipe';
 // import MenuStack from './components/MenuBar';
 
 // const Main = createStackNavigator();
@@ -52,6 +53,7 @@ export default function App() {
         {/* <Stack.Screen name="MenuStack" component={MenuStack} /> */}
         
         <Stack.Screen name = 'Home' component={Home} />
+        <Stack.Screen name = 'Recipe' component={Recipe} />
 
       </Stack.Navigator>
     </NavigationContainer>

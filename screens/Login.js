@@ -77,8 +77,6 @@ const Login = ({navigation}) => {
       //  alert(`Email: ${values.email}, Password: ${values.password}`)
   });
 
-  // const password = useRef(null);
-
   return (
     <View
       style={{
@@ -138,7 +136,6 @@ const Login = ({navigation}) => {
 
       {errorMessage ? <Text style={{marginTop: 30}}>{errorMessage}</Text> : null}
       
-      {/* <NavBar/> */}
     </View>
 
     

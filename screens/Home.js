@@ -24,7 +24,6 @@ import '../global.js'
            />
 
            <MenuBar/>
-        {/* <MenuBar navigation={navigation}/> */}
     </View>
 
   
