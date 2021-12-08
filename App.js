@@ -8,6 +8,7 @@ import SignUp from './screens/SignUp';
 import AppTimer from './screens/AppTimer'
 
 import './global.js'
+import AppContainer from './components/AppContainer';
 // import MenuStack from './components/MenuBar';
 
 // const Main = createStackNavigator();
@@ -56,3 +57,9 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+// export default function App() {
+//   return (
+//     <AppContainer/>
+//   );
+// }

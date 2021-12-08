@@ -1,6 +1,7 @@
-global.user_token = "";
+global.user_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhbWVyZ2lybDUwMDFAZ21haWwuY29tIiwibGFzdE5hbWUiOiJCdXJrZSIsImZpcnN0TmFtZSI6IkN5bnRoaWEiLCJ1c2VybmFtZSI6InRoYW5rc2dpdmluZ3VzZXIiLCJpZCI6IjYxOWYwOGRjOWQ0NzlkNDQyZjc2Njk5MSIsImlhdCI6MTYzODk0MTI3MiwiZXhwIjoxNjM4OTQ0ODcyfQ.bHfOZA5CHfH7jYNkCIjirWx3MTiEjQHKWHy2LQ3Kg8Q";
 
-global.home_recipes = [
+global.home_recipes = "";
+[
     {
         "_id": "61a72ad47c500672f471967c",
         "username": "thanksgivinguser",

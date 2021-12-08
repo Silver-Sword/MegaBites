@@ -15,7 +15,8 @@ const login_destination = "api/posts/timeline/all";
       console.log("entered getRecipesHome")
       if(global.user_token == '')
       {
-        return null;
+          
+        // return null;
       }
 
         console.log("beginning get recipes");
@@ -32,10 +33,12 @@ const login_destination = "api/posts/timeline/all";
             console.log(`${API_URL}${login_destination}`);
             
             return fetch(`${API_URL}${login_destination}`, requestOptions)
-                .then(response => console.log(response))
-                .then(response => response.json())
-                .then(response => {
-                return response
+                // .then(response => console.log(response))
+                .then((response) => response.json())
+                .then((data) => {
+                    // console.log(data);
+                    global.home_recipes = data;
+                    return data;
                 });
                 
 
@@ -44,4 +47,6 @@ const login_destination = "api/posts/timeline/all";
             setError("Error occured");
             return failure({ error: 500, message: 'Something went wrong' });
         }
+
+
     };

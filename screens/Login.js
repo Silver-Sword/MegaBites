@@ -12,6 +12,8 @@ import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import { NavigationContainer } from '@react-navigation/native';
 import { getRecipesHome } from '../api_link/getRecipes.js';
+import NavBar from '../components/NavBar.js';
+import CustomToolbar from '../components/assets/CustomToolbar.js';
 
 // import { MenuStack} from '../components/MenuBar'
 
@@ -41,9 +43,12 @@ const Login = ({navigation}) => {
         if(response.success)
         {
           global.user_token = response.token;
-          // global.home_recipes = getRecipesHome();
-          console.log(global.home_recipes);
-          navigation.navigate('Home');
+          getRecipesHome()
+            .then((response) => {
+              global.home_recipes = response;
+              console.log(global.home_recipes[0]);
+              navigation.navigate('Home');
+            });
         }
 
         else
@@ -83,6 +88,8 @@ const Login = ({navigation}) => {
         justifyContent: 'center',
       }}
     >
+      {/* <NavBar/> */}
+      {/* <CustomToolbar/> */}
       <Image 
           style={login_styles.image} 
           source={require('../components/imgs/MegaBitesLogo_transparent-large.png')} 
@@ -132,11 +139,19 @@ const Login = ({navigation}) => {
     <Button label='Test'
           // onPress={handleSubmit}
           //onPress = {() => navigation.navigate('Home')}
-          onPress = {() => getRecipesHome()}
+          onPress = {() => 
+              {
+                let data = getRecipesHome();
+              }
+            }
            />
 
       {errorMessage ? <Text style={{marginTop: 30}}>{errorMessage}</Text> : null}
+      
+      {/* <NavBar/> */}
     </View>
+
+    
   );
 }
 
