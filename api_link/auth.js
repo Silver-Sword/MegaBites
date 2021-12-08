@@ -57,40 +57,25 @@ const login_destination = "api/auth/login";
           },
         }
 
-        console.log("defined config");
-
         console.log("at doLogin");
         try {
-
-          //console.log("email is " + email + " password is " + password);
-
-          // Simple POST request with a JSON body using fetch
           const requestOptions = {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: '{"email":"gamergirl5001@gmail.com", "password":"delta123"}'
+              body: JSON.stringify({email, password})
+              //body: '{"email":"gamergirl5001@gmail.com", "password":"delta123"}'
           };
 
           console.log(requestOptions);
-          console.log(`${API_URL}${login_destination}`);
 
           fetch(`${API_URL}${login_destination}`, requestOptions)
               .then(response => response.json())
+              .then(console.log(data))
               .then(data => {return data.token})
               .catch(error => console.log(error.toString()));
-          
-          // console.log("function ending");
-        
-          // console.log(data);
-
-          // console.log("email is " + email + " password is " + password);
-          
-          //const {data} = axios.post(`${API_URL}${login_destination}`, {email, password}, config);
-
-          //console.log(data);
-
-            localStorage.setItem("authToken", data.token);
-                history.push('/home');
+    
+            // localStorage.setItem("authToken", data.token);
+            //     history.push('/home');
 
             // console.log("at end");
 

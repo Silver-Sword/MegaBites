@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, {  useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -12,31 +12,31 @@ import Button from '../components/Button';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string()
-    .min(2, 'Too Short!')
-    .max(10, 'Too Long!')
-    .required('Required')
-});
+// const LoginSchema = Yup.object().shape({
+//   email: Yup.string().email('Invalid email').required('Required'),
+//   password: Yup.string()
+//     .min(2, 'Too Short!')
+//     .max(10, 'Too Long!')
+//     .required('Required')
+// });
 
 const Login = ({navigation}) => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   // const { onLogin, isLoading, error } = useContext(AuthenticationContext);
 
   const [errorMessage, setErrorMessage] = useState('');
 
   const loginUser = () => {
     setErrorMessage('');
-    console.log("checking login credentials");
+    console.log("email is " + email + " password is " + password);
     login('gamergirl5001@gmail.com', 'delta123', true)
       .then(() => {
         navigation.navigate('Home');
       })
       .catch((err) => setErrorMessage(err.message));
 
-    console.log("login successful");
+    console.log("login function successful");
   };
 
   const {
@@ -47,14 +47,14 @@ const Login = ({navigation}) => {
     errors,
     touched
   } = useFormik({
-    validationSchema: LoginSchema,
-    initialValues: { email: '', password: '' },
-    onSubmit: values => loginUser
+    // validationSchema: LoginSchema,
+    // initialValues: { email: '', password: '' },
+    // onSubmit: values => loginUser
       //navigation.navigate('Home', {name: values.email}) 
       //  alert(`Email: ${values.email}, Password: ${values.password}`)
   });
 
-  const password = useRef(null);
+  // const password = useRef(null);
 
   return (
     <View
@@ -81,17 +81,15 @@ const Login = ({navigation}) => {
           keyboardAppearance='dark'
           returnKeyType='next'
           returnKeyLabel='next'
-          onChangeText={handleChange('email')}
+          onChangeText={(userEmail) => setEmail(userEmail)}
           onBlur={handleBlur('email')}
           error={errors.email}
           touched={touched.email}
-          onSubmitEditing={() => password.current?.focus()}
         />
       </View>
       <View style={login_styles.login_box}>
         <TextInput
           placeholderTextColor='#555555'
-          ref={password}
           icon='key'
           placeholder='Enter your password'
           secureTextEntry
@@ -100,7 +98,7 @@ const Login = ({navigation}) => {
           keyboardAppearance='dark'
           returnKeyType='go'
           returnKeyLabel='go'
-          onChangeText={handleChange('password')}
+          onChangeText={(userPass) => setPassword(userPass)}
           onBlur={handleBlur('password')}
           error={errors.password}
           touched={touched.password}
@@ -110,7 +108,7 @@ const Login = ({navigation}) => {
       <Button label='Login'
           // onPress={handleSubmit}
           //onPress = {() => navigation.navigate('Home')}
-          onPress = {loginUser}
+          onPress = {() => loginUser(email, password)}
            />
 
       {errorMessage ? <Text style={{marginTop: 30}}>{errorMessage}</Text> : null}
