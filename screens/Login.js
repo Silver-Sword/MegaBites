@@ -5,12 +5,14 @@ import * as Yup from 'yup';
 
 // api stuff
 import {login} from '../api_link/auth.js'
+import '../global.js'
 
 // Interactive Components
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import { NavigationContainer } from '@react-navigation/native';
 
+// import { MenuStack} from '../components/MenuBar'
 
 // const LoginSchema = Yup.object().shape({
 //   email: Yup.string().email('Invalid email').required('Required'),
@@ -31,12 +33,15 @@ const Login = ({navigation}) => {
   const loginUser = () => {
     setErrorMessage('');
     console.log("email is " + email + " password is " + password);
-    login('gamergirl5001@gmail.com', 'delta123', true)  // currently on definite success
+    login('gamergirl5001@gmail.com', 'happytest', true)  // currently on definite success
       .then((response) => {
         console.log(response);
 
         if(response.success)
         {
+          global.user_token = response.token;
+          console.log(global.user_token);
+          console.log(global.user_token != '.');
           navigation.navigate('Home');
         }
 
