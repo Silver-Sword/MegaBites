@@ -12,11 +12,10 @@ const login_destination = "api/posts/timeline/all";
   // get recipes function
   export const getRecipesHome = () => 
   {  
-      console.log("entered getRecipesHome")
+    //   console.log("entered getRecipesHome")
       if(global.user_token == '')
       {
-          
-        // return null;
+        return null;
       }
 
         console.log("beginning get recipes");
@@ -29,8 +28,8 @@ const login_destination = "api/posts/timeline/all";
                 //body: '{"email":"gamergirl5001@gmail.com", "password":"delta123"}'
             };
 
-            console.log(requestOptions);
-            console.log(`${API_URL}${login_destination}`);
+            // console.log(requestOptions);
+            // console.log(`${API_URL}${login_destination}`);
             
             return fetch(`${API_URL}${login_destination}`, requestOptions)
                 // .then(response => console.log(response))
