@@ -14,7 +14,6 @@ const Item = ({ title, description, info, navigation }) => (
   >
     <Text style={styles.title}>{title}</Text>
     <Text style={styles.subtitle}>{description}</Text>
-    <Text>{info._id}</Text>
   </TouchableOpacity>
 );
 

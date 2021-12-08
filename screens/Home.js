@@ -10,7 +10,6 @@ import '../global.js'
  const Home = ({navigation, item}) => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
 
       <Button label='Logout'
           // onPress={handleSubmit}

@@ -51,7 +51,7 @@ export default function App() {
       <Stack.Navigator options={{
                         headerShown: false
                     }}>
-        {/* <Stack.Screen name='Timer' component={AppTimer} /> */}
+        
         <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>        
         <Stack.Screen name = 'Home' component={Home} options={{headerShown: false}}/>
         <Stack.Screen name = 'RecipePage' component={Recipe} 
@@ -67,6 +67,11 @@ export default function App() {
           //),
         }}
       />
+      
+      <Stack.Screen name='Timer' component={AppTimer} 
+            options={{
+              headerShown: true
+          }}/>
 
       </Stack.Navigator>
     </NavigationContainer>
