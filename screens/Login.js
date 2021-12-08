@@ -29,11 +29,14 @@ const Login = ({navigation}) => {
 
   const loginUser = () => {
     setErrorMessage('');
-    login('test@test.ca', 'password', false)
+    console.log("checking login credentials");
+    login('gamergirl5001@gmail.com', 'delta123', true)
       .then(() => {
         navigation.navigate('Home');
       })
       .catch((err) => setErrorMessage(err.message));
+
+    console.log("login successful");
   };
 
   const {

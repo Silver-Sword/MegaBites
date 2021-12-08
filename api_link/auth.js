@@ -2,9 +2,7 @@ import React, { useState, createContext } from 'react';
 import axios from 'axios';
 
 import { API_URL } from './secret/secrets.js';
-import APIKit from './APIKit.js';
-const {login_destination} = "api/auth/login";
-
+//import APIKit from './APIKit.js';
 
 // import * as firebase from 'firebase';
 
@@ -17,6 +15,8 @@ const {login_destination} = "api/auth/login";
 
 // const [user, setUser] = useState(null);
 // const [error, setError] = useState(null);
+const login_destination = "api/auth/login";
+
 
   const success = (value) => {
     return new Promise((resolve) => {
@@ -44,32 +44,64 @@ const {login_destination} = "api/auth/login";
   // login function
   export const login = (email, password, shouldSucceed = true) => 
   {  
+    console.log("top of login");
     const doLogin = async event =>     
     {   
-        event.preventDefault();
+      console.log("before event");
+
+        // event.preventDefault();
 
         const config = {
-			header: {
-				"Content-Type": "application/json",
-			},
-		}
+          header: {
+            "Content-Type": "application/json",
+          },
+        }
 
-		try {
-			const {data} = axios.post(`${API_URL}${login_destination}`, {email, password}, config);
+        console.log("defined config");
 
+        console.log("at doLogin");
+        try {
 
-		    localStorage.setItem("authToken", data.token);
-            history.push('/home');
+          //console.log("email is " + email + " password is " + password);
 
-        return success({ auth_token: data.token }); 
-		}catch(error) {
-			setError("Error occured");
-      return failure({ error: 500, message: 'Username or Password Incorrect' });
-		}
+          // Simple POST request with a JSON body using fetch
+          const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: '{"email":"gamergirl5001@gmail.com", "password":"delta123"}'
+          };
 
+          console.log(requestOptions);
+          console.log(`${API_URL}${login_destination}`);
+
+          fetch(`${API_URL}${login_destination}`, requestOptions)
+              .then(response => response.json())
+              .then(data => {return data.token})
+              .catch(error => console.log(error.toString()));
+          
+          // console.log("function ending");
         
+          // console.log(data);
+
+          // console.log("email is " + email + " password is " + password);
+          
+          //const {data} = axios.post(`${API_URL}${login_destination}`, {email, password}, config);
+
+          //console.log(data);
+
+            localStorage.setItem("authToken", data.token);
+                history.push('/home');
+
+            // console.log("at end");
+
+            return success({ auth_token: data.token }); 
+        }catch(error) {
+          setError("Error occured");
+          return failure({ error: 500, message: 'Username or Password Incorrect' });
+        }
     };   
 
+    return doLogin();
 
     // const config = {
     //   header: {

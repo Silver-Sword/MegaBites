@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Button from '../components/Button';
 
+
+import Button from '../components/Button';
+import MenuBar from '../components/MenuBar';
 
  const Home = ({navigation}) => {
   return (
@@ -12,7 +14,10 @@ import Button from '../components/Button';
           // onPress={handleSubmit}
           onPress = {() => navigation.navigate('Login')}
            />
+        <MenuBar/>
     </View>
+
+  
   );
 }
 

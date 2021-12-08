@@ -12,7 +12,7 @@ const Main = createStackNavigator();
 const MainNavigator = () => {
   return (
     <Main.Navigator headerMode='none'>
-      {/* <Main.Screen name='Timer' component={AppTimer} /> */}
+      <Main.Screen name='Timer' component={AppTimer} />
       <Main.Screen name='Login' component={Login} />
       <Main.Screen name='SignUp' component={SignUp} />
       <Main.Screen name='Home' component={Home} />
