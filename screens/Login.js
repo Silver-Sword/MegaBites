@@ -41,7 +41,7 @@ const Login = ({navigation}) => {
         if(response.success)
         {
           global.user_token = response.token;
-          global.home_recipes = getRecipesHome();
+          // global.home_recipes = getRecipesHome();
           console.log(global.home_recipes);
           navigation.navigate('Home');
         }
@@ -127,6 +127,12 @@ const Login = ({navigation}) => {
           // onPress={handleSubmit}
           //onPress = {() => navigation.navigate('Home')}
           onPress = {() => loginUser(email, password)}
+           />
+
+    <Button label='Test'
+          // onPress={handleSubmit}
+          //onPress = {() => navigation.navigate('Home')}
+          onPress = {() => getRecipesHome()}
            />
 
       {errorMessage ? <Text style={{marginTop: 30}}>{errorMessage}</Text> : null}

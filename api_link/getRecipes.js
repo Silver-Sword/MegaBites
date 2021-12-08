@@ -15,7 +15,7 @@ const login_destination = "api/posts/timeline/all";
       console.log("entered getRecipesHome")
       if(global.user_token == '')
       {
-          return null;
+        return null;
       }
 
         console.log("beginning get recipes");
@@ -29,8 +29,10 @@ const login_destination = "api/posts/timeline/all";
             };
 
             console.log(requestOptions);
+            console.log(`${API_URL}${login_destination}`);
             
             return fetch(`${API_URL}${login_destination}`, requestOptions)
+                .then(response => console.log(response))
                 .then(response => response.json())
                 .then(response => {
                 return response
