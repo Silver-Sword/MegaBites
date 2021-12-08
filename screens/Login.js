@@ -11,6 +11,7 @@ import '../global.js'
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import { NavigationContainer } from '@react-navigation/native';
+import { getRecipesHome } from '../api_link/getRecipes.js';
 
 // import { MenuStack} from '../components/MenuBar'
 
@@ -40,6 +41,8 @@ const Login = ({navigation}) => {
         if(response.success)
         {
           global.user_token = response.token;
+          global.home_recipes = getRecipesHome();
+          console.log(global.home_recipes);
           navigation.navigate('Home');
         }
 

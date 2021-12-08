@@ -12,6 +12,7 @@ const login_destination = "api/posts/timeline/all";
   // get recipes function
   export const getRecipesHome = () => 
   {  
+      console.log("entered getRecipesHome")
       if(global.user_token == '')
       {
           return null;
