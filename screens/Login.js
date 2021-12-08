@@ -23,6 +23,7 @@ import { NavigationContainer } from '@react-navigation/native';
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [token, setToken] = useState('');
   // const { onLogin, isLoading, error } = useContext(AuthenticationContext);
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -30,9 +31,20 @@ const Login = ({navigation}) => {
   const loginUser = () => {
     setErrorMessage('');
     console.log("email is " + email + " password is " + password);
-    login('gamergirl5001@gmail.com', 'delta123', true)
-      .then(() => {
-        navigation.navigate('Home');
+    login('gamergirl5001@gmail.com', 'delta123', true)  // currently on definite success
+      .then((response) => {
+        console.log(response);
+
+        if(response.success)
+        {
+          navigation.navigate('Home');
+        }
+
+        else
+        {
+          setErrorMessage(response.error);
+        }
+
       })
       .catch((err) => setErrorMessage(err.message));
 

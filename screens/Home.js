@@ -14,7 +14,7 @@ import MenuBar from '../components/MenuBar';
           // onPress={handleSubmit}
           onPress = {() => navigation.navigate('Login')}
            />
-        <MenuBar/>
+        {/* <MenuBar/> */}
     </View>
 
   

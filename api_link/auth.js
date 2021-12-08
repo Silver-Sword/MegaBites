@@ -44,11 +44,9 @@ const login_destination = "api/auth/login";
   // login function
   export const login = (email, password, shouldSucceed = true) => 
   {  
-    console.log("top of login");
+    console.log("logging in");
     const doLogin = async event =>     
-    {   
-      console.log("before event");
-
+    {  
         // event.preventDefault();
 
         const config = {
@@ -68,19 +66,26 @@ const login_destination = "api/auth/login";
 
           console.log(requestOptions);
 
-          fetch(`${API_URL}${login_destination}`, requestOptions)
+          let data;
+          
+          return fetch(`${API_URL}${login_destination}`, requestOptions)
               .then(response => response.json())
-              .then(console.log(data))
-              .then(data => {return data.token})
-              .catch(error => console.log(error.toString()));
+              .then(response => {
+                return response
+              });
+              //.catch(error => console.log(error.toString()));
     
             // localStorage.setItem("authToken", data.token);
             //     history.push('/home');
 
             // console.log("at end");
+            console.log("Data: ");
+            console.log(data);
+            
+            return data; 
 
-            return success({ auth_token: data.token }); 
         }catch(error) {
+          console.log("error occurred when trying to log in " + error);
           setError("Error occured");
           return failure({ error: 500, message: 'Username or Password Incorrect' });
         }
