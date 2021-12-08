@@ -136,16 +136,6 @@ const Login = ({navigation}) => {
           onPress = {() => loginUser(email, password)}
            />
 
-    <Button label='Test'
-          // onPress={handleSubmit}
-          //onPress = {() => navigation.navigate('Home')}
-          onPress = {() => 
-              {
-                let data = getRecipesHome();
-              }
-            }
-           />
-
       {errorMessage ? <Text style={{marginTop: 30}}>{errorMessage}</Text> : null}
       
       {/* <NavBar/> */}
