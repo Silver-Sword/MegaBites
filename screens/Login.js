@@ -35,10 +35,10 @@ const Login = ({navigation}) => {
 
   const loginUser = () => {
     setErrorMessage('');
-    console.log("email is " + email + " password is " + password);
-    login('gamergirl5001@gmail.com', 'happytest', true)  // currently on definite success
+    //console.log("email is " + email + " password is " + password);
+    login(email, password, true)  // currently on definite success
       .then((response) => {
-        console.log(response);
+        //console.log(response);
 
         if(response.success)
         {
@@ -163,7 +163,6 @@ const login_styles = StyleSheet.create({
     marginBottom: 20,
     border: 'none',
     alignItems: "center",
-    
   },
 
 });

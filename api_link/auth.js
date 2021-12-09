@@ -63,7 +63,7 @@ const login_destination = "api/auth/login";
               //body: '{"email":"gamergirl5001@gmail.com", "password":"delta123"}'
           };
 
-          console.log(requestOptions);
+          //console.log(requestOptions);
 
           let data;
           
