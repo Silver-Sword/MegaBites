@@ -4,30 +4,36 @@ import BackButton from './BackButton';
 import {withNavigation} from 'react-navigation';
 // import Icon from 'react-native-vector-icons/Ionicons';
  
- class DetailsScreen extends React.Component {
-    constructor(props) {
+ class DetailsScreen extends React.Component 
+ {
+    constructor(props) 
+    {
         super(props);     
     }
     
-  render() {
+  render() 
+  {
     return (
         <View style={styles.navBar}>
-        <View style={styles.leftContainer}>
-         <BackButton/>    
-        </View>
-        <Text style={styles.middleContainer}>
-         {this.props.title}
-        </Text>
-        <View style={styles.rightContainer}>
-          <View style={styles.rightIcon}>
-          {/* <Icon name="ios-search" size={25} color="#000000" /> */}
-          <Text>Right</Text>
-              </View>
-              <View style={styles.rightIcon}>
-                  <Text>Text</Text>
-          {/* <Icon name="md-cart" size={25} color="#000000" /> */}
-              </View>
-        </View>
+            <View style={styles.leftContainer}>
+                <BackButton/>    
+            </View>
+
+            <Text style={styles.middleContainer}>
+                {this.props.title}
+            </Text>
+
+            <View style={styles.rightContainer}>
+                <View style={styles.rightIcon}>
+                    {/* <Icon name="ios-search" size={25} color="#000000" /> */}
+                    <Text>Right</Text>
+                </View>
+                    
+                <View style={styles.rightIcon}>
+                    <Text>Text</Text>
+                    {/* <Icon name="md-cart" size={25} color="#000000" /> */}
+                </View>
+            </View>
       </View>
       );
     
@@ -35,8 +41,11 @@ import {withNavigation} from 'react-navigation';
   }
 }
 export default withNavigation(DetailsScreen);
-const styles = StyleSheet.create({
-    navBar: {
+
+const styles = StyleSheet.create
+({
+    navBar: 
+    {
       height: 54,
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -48,27 +57,36 @@ const styles = StyleSheet.create({
       shadowRadius: 4,
       elevation: 1,
     },
-    leftContainer: {
+
+    leftContainer: 
+    {
       justifyContent: 'flex-start',   
       flexDirection: 'row'
     },
-    middleContainer: {
+
+    middleContainer: 
+    {
         flex: 2,
         backgroundColor: 'white',
         flexDirection: 'row',
         fontSize:18,
         marginLeft: 10,
         marginRight:10
-      },
-    rightContainer: {
+    },
+
+    rightContainer: 
+    {
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'flex-end',
       alignItems: 'center',
     },
-    rightIcon: {
-    paddingHorizontal:20,
+
+    rightIcon: 
+    {
+      paddingHorizontal:20,
       resizeMode: 'contain',
       backgroundColor: 'white',
     }
+
   });

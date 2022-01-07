@@ -1,10 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 
-export default function Button({ label, onPress }) {
+export default function Button({ label, onPress }) 
+{
   return (
     <TouchableOpacity
-      style={{
+      style=
+      {{
         borderRadius: 8,
         height: 50,
         width: 245,
@@ -15,11 +17,13 @@ export default function Button({ label, onPress }) {
       activeOpacity={0.7}
       onPress={onPress}
     >
+
       <Text
         style={{ fontSize: 18, color: 'white', textTransform: 'uppercase' }}
       >
         {label}
       </Text>
+
     </TouchableOpacity>
   );
 }

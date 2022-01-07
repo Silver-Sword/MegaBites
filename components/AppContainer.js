@@ -9,10 +9,12 @@ import HomeScreen from '../screens/HomeScreen'
 import Login from '../screens/Login'
 import SignUp from '../screens/SignUp'
 
- const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
-function MainNavigator() {
-  return(
+function MainNavigator() 
+{
+  return 
+  (
     <Stack.Navigator
       screenOptions={{
           headerTitleStyle: {
@@ -27,16 +29,17 @@ function MainNavigator() {
       <Stack.Screen name='Login' component={Login}/>
       <Stack.Screen name='AppTimer' component={AppTimer}/>
       <Stack.Screen name='SignUp' component={SignUp} />
+
     </Stack.Navigator>
   )
-} 
+}
 
+const Drawer = createDrawerNavigator();
 
-
- const Drawer = createDrawerNavigator();
-
-function DrawerStack() {
-  return(
+function DrawerStack() 
+{
+  return
+  (
     <Drawer.Navigator
       drawerPosition='left'
       initialRouteName='Main'
@@ -47,13 +50,16 @@ function DrawerStack() {
       drawerContent={({navigation})=> <DrawerContainer navigation={navigation}/>}
     >
       <Drawer.Screen name='Main' component={MainNavigator} />
+
     </Drawer.Navigator>
   )
 } 
 
 
- export default function AppContainer() {
-  return(
+ export default function AppContainer() 
+ {
+  return
+  (
     <NavigationContainer>
       <DrawerStack/>
     </NavigationContainer>

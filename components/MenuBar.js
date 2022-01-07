@@ -11,8 +11,10 @@ import {AppTimer} from '../screens/AppTimer.js'
 import HomeScreen from '../screens/HomeScreen.js'
 
 
-function SettingsScreen({navigation}) {
-  return (
+function SettingsScreen({navigation}) 
+{
+  return 
+  (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
       <TouchableOpacity
@@ -32,7 +34,7 @@ function SettingsScreen({navigation}) {
         <Text
           style={{ fontSize: 18, color: 'white', textTransform: 'uppercase' }}
         >
-        Set Timer
+          Set Timer
         </Text>
       </TouchableOpacity>
       
@@ -40,8 +42,10 @@ function SettingsScreen({navigation}) {
   );
 }
 
-function TimerScreen() {
-  return (
+function TimerScreen() 
+{
+  return 
+  (
     <AppTimer/>
   );
 }
@@ -81,11 +85,14 @@ const Tab = createBottomTabNavigator();
 
 export default function MenuBar()
 {
-  return (
+  return 
+  (
     <Tab.Navigator>
+
       {/* <Tab.Screen name="TimerScreen" component={TimerScreen} /> */}
       <Tab.Screen name="Timer" component={SettingsScreen} />
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
+      
     </Tab.Navigator>
   );
 }
