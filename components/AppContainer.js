@@ -13,8 +13,7 @@ const Stack = createStackNavigator();
 
 function MainNavigator() 
 {
-  return 
-  (
+  return (
     <Stack.Navigator
       screenOptions={{
           headerTitleStyle: {
@@ -38,8 +37,7 @@ const Drawer = createDrawerNavigator();
 
 function DrawerStack() 
 {
-  return
-  (
+  return (
     <Drawer.Navigator
       drawerPosition='left'
       initialRouteName='Main'
@@ -58,8 +56,7 @@ function DrawerStack()
 
  export default function AppContainer() 
  {
-  return
-  (
+  return (
     <NavigationContainer>
       <DrawerStack/>
     </NavigationContainer>

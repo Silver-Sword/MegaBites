@@ -5,7 +5,7 @@ const Recipe = ({ item, navigation }) => {
   item = global.item_view;
   console.log(item);
 
-    return(
+    return (
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <View style={styles.container}>
@@ -62,11 +62,13 @@ const styles = StyleSheet.create({
       marginRight: "3%",
       marginLeft: "3%"
     },
+
     item: {
       backgroundColor: '#f9c2ff',
       marginVertical: 8,
       marginHorizontal: 16,
     },
+
     title: {
       fontSize: 32,
       color: "black",
